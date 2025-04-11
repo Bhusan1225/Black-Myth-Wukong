@@ -6,58 +6,71 @@ public class CharacterMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed = 3f;
-    [SerializeField]
+    
     private float moveX;
-    [SerializeField]
     private float moveZ;
 
     [SerializeField]
     private CameraController playerCamera;
+    
     [SerializeField]
     private float rotSpeed = 600f;
     Quaternion requiredRotation;
-
-    //grounded
-    bool isGrounded;
-    [SerializeField]
-    private Transform groundCheck;
-    [SerializeField]
-    private float groundDistance;
-    [SerializeField]
-    private LayerMask groundMask;
+   
+    
+   
     Vector3 velocity;
-    //float gravity = -9.8f ;
+   
+
     [SerializeField]
     private float movementAmout;
     Vector3 movementDirection;
 
-     
+    //player Animation
+    Animator animator;
+
+    [Header ("Player Collision & Gravity")]
+    public CharacterController characterController;
+    //[SerializeField] private Transform groundCheck;
+    [SerializeField] private Vector3 groundCheckOffset;
+    [SerializeField] private float groundDistance;
+    [SerializeField] private LayerMask groundLayer;
+    [SerializeField] bool isGrounded;
+
+
+    [SerializeField]
+    float fallingSpeed;
+
     private void Start()
     {
-        
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (isGrounded)
+        {
+            fallingSpeed = -0.5f;
+        }
+        else
+        {
+            fallingSpeed += Physics.gravity.y *Time.deltaTime;
+        }
 
+        var velocity = movementDirection * speed;
+        velocity.y = fallingSpeed;
 
         PlayerMovement();
+        PlayerMovementAnimation();
+        GroundCheck();
 
-
+        
     }
 
     public void PlayerMovement()
     {
-        //ground check
-        isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
-
-        //resetting the default velocity
-        if (isGrounded && velocity.y < 0f)
-        {
-            velocity.y = -5f;
-        }
-
+     
 
         // will give direction
         moveX = Input.GetAxisRaw("Horizontal");
@@ -70,16 +83,36 @@ public class CharacterMovement : MonoBehaviour
         var movementInput = (new Vector3(moveX, 0, moveZ)).normalized;
 
         movementDirection = playerCamera.flatRoation * movementInput;
+        characterController.Move(movementDirection * speed * Time.deltaTime);
 
         if (movementAmout > 0)
         {
-            this.transform.position += movementDirection * speed * Time.deltaTime;
             requiredRotation = Quaternion.LookRotation(movementDirection);
         }
 
         this.transform.rotation = Quaternion.RotateTowards(this.transform.rotation, requiredRotation, rotSpeed * Time.deltaTime); // for the smooth roation
     }
+
+    void PlayerMovementAnimation()
+    {
+        animator.SetFloat("Move", movementAmout);
+    }
    
+
+    void GroundCheck()
+    {
+        //ground check
+        isGrounded = Physics.CheckSphere(transform.TransformPoint(groundCheckOffset), groundDistance, groundLayer);
+
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+       Gizmos.color = Color.yellow;
+
+       Gizmos.DrawSphere(transform.TransformPoint(groundCheckOffset), groundDistance);
+
+    }
 
 }
 
