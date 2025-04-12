@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2127e604f70b0cd4b81ad3f7ccfcc4e5
+guid: a57d98199e1785e4e95768bb66706478
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: mixamo.com
+      name: Unarmed Idle
       takeName: mixamo.com
       internalID: -203655887218126122
       firstFrame: 0
-      lastFrame: 26
+      lastFrame: 57
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
