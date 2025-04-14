@@ -24,7 +24,7 @@ public class ElderGoblinAI : MonoBehaviour
     public int attackVal;
     [SerializeField] float giveDamage;
     [SerializeField] float timeBtwAttack;
-    bool previouslyAttack = false;
+    [SerializeField] bool previouslyAttack;
 
     [Header("Attack Areas")]
     [SerializeField] float attackingRadius;
@@ -36,6 +36,10 @@ public class ElderGoblinAI : MonoBehaviour
 
 
     [SerializeField] Collider[] hitPlayer;
+    [SerializeField] PlayerHealth playerHealth;
+    [SerializeField]  CloseCombatHandler closeCombatHandler;
+
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -62,6 +66,7 @@ public class ElderGoblinAI : MonoBehaviour
         if (isPlayerinVisionRadius && isPlayerinAttackRadius)
         {
             animator.SetBool("IdleAngry", true);
+            
             AttackModes();
         }
        
@@ -81,38 +86,35 @@ public class ElderGoblinAI : MonoBehaviour
         if (!previouslyAttack)
         {
             
-            attackVal = Random.Range(1, 5);
+            attackVal = Random.Range(1, 4);
 
             if (attackVal == 1)
             {
-                
-
-                Attack();
-                //animation
-                StartCoroutine(Attack1());
+       
+               Attack();
+               
+               StartCoroutine(Attack1());
 
 
             }
             if (attackVal == 2)
             {
-              
-                //attackArea = LeftLeg;
+
                 Attack();
+               
                 StartCoroutine(Attack2());
             }
             if (attackVal == 3)
             {
 
-                //attackArea = RightLeg;
-                //attackArea = LeftLeg;
                 Attack();
                 StartCoroutine(Attack3());
             }
             if (attackVal == 4)
             {
-                //attackArea = RightLeg;
 
                 Attack();
+                
                 StartCoroutine(Attack4());
             }
           
@@ -130,15 +132,18 @@ public class ElderGoblinAI : MonoBehaviour
     }
     void Attack()
     {
-        hitPlayer = Physics.OverlapSphere(attackArea.position, attackingRadius, playerLayer);
+        Debug.Log(" detect the player 1");
+        hitPlayer = Physics.OverlapSphere(attackArea.position, attackingRadius);
         foreach (Collider player in hitPlayer)
         {
-            PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-
-            if (playerHealth != null)
+            if(player.GetComponent<PlayerHealth>() != null)
             {
-                Debug.Log("enemy detect the player");
+                Debug.Log(" detect the player 2");
+                playerHealth = GetComponent<PlayerHealth>();
+                playerHealth.TakeDamage(5f);
+                Debug.Log("enemy detect the player 3");
             }
+
         }
 
         previouslyAttack = true;
@@ -155,7 +160,7 @@ public class ElderGoblinAI : MonoBehaviour
     {
         animator.SetBool("Attack1", true);
         speed = 0f;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         animator.SetBool("Attack1", false);
         speed = 4f;
     }
@@ -165,7 +170,7 @@ public class ElderGoblinAI : MonoBehaviour
     {
         animator.SetBool("Attack2", true);
         speed = 0f;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         animator.SetBool("Attack2", false);
         speed = 4f;
     }
@@ -174,7 +179,7 @@ public class ElderGoblinAI : MonoBehaviour
     {
         animator.SetBool("Attack3", true);
         speed = 0f;
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         speed = 4f;
         animator.SetBool("Attack3", false);
     }
@@ -182,16 +187,11 @@ public class ElderGoblinAI : MonoBehaviour
     IEnumerator Attack4()
     {
         animator.SetBool("Attack4", true);
-        speed = 0f;
-        yield return new WaitForSeconds(0.1f);
+       speed = 0f;
+        yield return new WaitForSeconds(0.2f);
         speed = 4f;
         animator.SetBool("Attack4", false);
     }
-
-
-
-
-
 
 
     public void TakeDamage(float amout)

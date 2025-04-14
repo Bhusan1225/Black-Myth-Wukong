@@ -1680,10 +1680,10 @@ GameObject:
   m_Component:
   - component: {fileID: 543450652178659800}
   - component: {fileID: 5866666020393837476}
+  - component: {fileID: 5866666020393837481}
   - component: {fileID: 5866666020393837474}
   - component: {fileID: 5866666020393837477}
   - component: {fileID: 5866666020393837478}
-  - component: {fileID: 5866666020393837479}
   - component: {fileID: 5866666020393837480}
   m_Layer: 7
   m_Name: Player Brute
@@ -10664,20 +10664,6 @@ MonoBehaviour:
   RightHand: {fileID: 4613432682845722333}
   LeftLeg: {fileID: 7151331951816603886}
   RightLeg: {fileID: 5477181765431546089}
---- !u!114 &5866666020393837479
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 919132148527555426}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 326de217f05297e4381c94f57e12e95c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 200
-  currentHealth: 0
 --- !u!65 &5866666020393837480
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10697,8 +10683,22 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2.1693041, z: 1}
-  m_Center: {x: 0, y: 1.1156586, z: 0}
+  m_Size: {x: 1, y: 2.1693041, z: 2.242569}
+  m_Center: {x: 0, y: 1.1156586, z: 0.6212845}
+--- !u!114 &5866666020393837481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148527555426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 326de217f05297e4381c94f57e12e95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
+  currentHealth: 0
 --- !u!95 &5866666020446141667
 Animator:
   serializedVersion: 5
@@ -10746,13 +10746,16 @@ MonoBehaviour:
   attackVal: 0
   giveDamage: 0
   timeBtwAttack: 0
-  attackingRadius: 5
+  previouslyAttack: 0
+  attackingRadius: 2
   attackArea: {fileID: 314080611}
   isPlayerinAttackRadius: 0
   RightHand: {fileID: 4692803938295481939}
   LeftLeg: {fileID: 7151331951885674415}
   RightLeg: {fileID: 5477181765505077160}
   hitPlayer: []
+  playerHealth: {fileID: 0}
+  closeCombatHandler: {fileID: 0}
 --- !u!136 &5866666020446141669
 CapsuleCollider:
   m_ObjectHideFlags: 0
