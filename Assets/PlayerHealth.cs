@@ -13,9 +13,9 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    public void TakeDamage(float amout)
+    public void TakeDamage(float amount)
     {
-        currentHealth -= amout;
+        currentHealth -= amount;
        
 
         if (currentHealth <= 0)
@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
     private void Die()
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
         
 
     }

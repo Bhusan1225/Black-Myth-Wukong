@@ -179,7 +179,7 @@ Transform:
   m_GameObject: {fileID: 314080610}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.04, z: 0}
+  m_LocalPosition: {x: 0, y: 1.04, z: 0.243}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10749,7 +10749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee263b991b32d5247be47c1be1995bb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 9
   playerCamera: {fileID: 1045311836}
   rotSpeed: 600
   movementAmout: 0
@@ -10804,7 +10804,7 @@ MonoBehaviour:
   animator: {fileID: 5866666020393837474}
   attackArea: {fileID: 0}
   attackingRadius: 0
-  giveDamage: 10
+  giveDamage: 4
   OpponentLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -10883,20 +10883,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 200
   currentHealth: 0
-  speed: 3
+  speed: 1
   animator: {fileID: 5866666020446141667}
   player: {fileID: 919132148527555426}
   playerLayer:
     serializedVersion: 2
     m_Bits: 128
-  visionRadius: 10
+  visionRadius: 12
   isPlayerinVisionRadius: 0
   attackRadius: 2
   attackVal: 0
   giveDamage: 0
   timeBtwAttack: 0
   previouslyAttack: 0
-  attackingRadius: 2
+  attackingRadius: 1.8
   attackArea: {fileID: 314080611}
   isPlayerinAttackRadius: 0
   RightHand: {fileID: 4692803938295481939}
@@ -10904,7 +10904,6 @@ MonoBehaviour:
   RightLeg: {fileID: 5477181765505077160}
   hitPlayer: []
   playerHealth: {fileID: 0}
-  closeCombatHandler: {fileID: 0}
 --- !u!136 &5866666020446141669
 CapsuleCollider:
   m_ObjectHideFlags: 0

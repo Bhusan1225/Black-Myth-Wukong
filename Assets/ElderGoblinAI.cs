@@ -37,7 +37,7 @@ public class ElderGoblinAI : MonoBehaviour
 
     [SerializeField] Collider[] hitPlayer;
     [SerializeField] PlayerHealth playerHealth;
-    [SerializeField]  CloseCombatHandler closeCombatHandler;
+    
 
 
     private void Start()
@@ -140,22 +140,20 @@ public class ElderGoblinAI : MonoBehaviour
     }
     void Attack()
     {
-        Debug.Log(" detect the player 1");
-        hitPlayer = Physics.OverlapSphere(attackArea.position, attackingRadius);
-        foreach (Collider player in hitPlayer)
+        Debug.Log("Player hit by Elder Goblin");
+        hitPlayer = Physics.OverlapSphere(attackArea.position, attackingRadius, playerLayer);
+        foreach (Collider hit in hitPlayer)
         {
-            if(player.GetComponent<PlayerHealth>() != null)
+            PlayerHealth targetHealth = hit.GetComponent<PlayerHealth>();
+            if (targetHealth != null)
             {
-                Debug.Log(" detect the player 2");
-                playerHealth = GetComponent<PlayerHealth>();
-                playerHealth.TakeDamage(5f);
-                Debug.Log("enemy detect the player 3");
+                Debug.Log("Player hit by Elder Goblin");
+                targetHealth.TakeDamage(0.05f);
             }
-
         }
 
         previouslyAttack = true;
-        Invoke(nameof(ActiveAttack),timeBtwAttack);
+        Invoke(nameof(ActiveAttack), timeBtwAttack);
     }
 
     private void ActiveAttack()
