@@ -14,7 +14,7 @@ public class CloseCombatHandler : MonoBehaviour
 
 
     [SerializeField] Transform attackArea;
-    [SerializeField] float attackRadius;
+    [SerializeField] float attackingRadius;
     [SerializeField] float giveDamage = 10f;
     [SerializeField] LayerMask OpponentLayer;
 
@@ -52,7 +52,7 @@ public class CloseCombatHandler : MonoBehaviour
 
     void Attack()
     {
-        hitOpponent = Physics.OverlapSphere(attackArea.position, attackRadius, OpponentLayer);
+        hitOpponent = Physics.OverlapSphere(attackArea.position, attackingRadius, OpponentLayer);
         foreach (Collider opponent in hitOpponent)
         {
             ElderGoblinAI elderGoblinAI = opponent.GetComponent<ElderGoblinAI>();
@@ -72,7 +72,7 @@ public class CloseCombatHandler : MonoBehaviour
             return;
 
         Gizmos.color = Color.red;
-        Gizmos.DrawSphere(attackArea.position, attackRadius);   
+        Gizmos.DrawSphere(attackArea.position, attackingRadius);   
     }
     void CloseCombatModes()
     {
@@ -84,7 +84,7 @@ public class CloseCombatHandler : MonoBehaviour
             {
                 //attack
                 attackArea = RightHand;
-                attackRadius = 0.5f;
+                attackingRadius = 0.5f;
                 Attack();
                 //animation
                 StartCoroutine(Attack1());
@@ -94,7 +94,7 @@ public class CloseCombatHandler : MonoBehaviour
             if (closeCombatVal == 2) 
             {
                 attackArea = RightHand;
-                attackRadius = 0.5f;
+                attackingRadius = 0.5f;
                 Attack();
                 StartCoroutine(Attack2());
             }
@@ -102,14 +102,14 @@ public class CloseCombatHandler : MonoBehaviour
             {
 
                 attackArea = RightLeg;
-                attackRadius = 0.5f;
+                attackingRadius = 0.5f;
                 Attack();
                 StartCoroutine(KickAttack3());
             }
             if (closeCombatVal == 4)
             {
                 attackArea = RightLeg;
-                attackRadius = 0.5f;
+                attackingRadius = 0.5f;
                 Attack();
                 StartCoroutine(KickAttack4());
             }
@@ -117,7 +117,7 @@ public class CloseCombatHandler : MonoBehaviour
             {
                 Debug.Log("Attack jump attack 5");
                 attackArea = RightHand;
-                attackRadius = 0.5f;
+                attackingRadius = 0.5f;
                 Attack();
                 StartCoroutine(JumpAttack5());
             }
