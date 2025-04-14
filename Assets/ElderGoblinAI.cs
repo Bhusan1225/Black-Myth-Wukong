@@ -56,27 +56,30 @@ public class ElderGoblinAI : MonoBehaviour
         {
             ChasePlayer();
         }
-        else
+    
+        if (!isPlayerinVisionRadius && !isPlayerinAttackRadius)
         {
+
             animator.SetBool("Walk", false);
 
         }
 
-
         if (isPlayerinVisionRadius && isPlayerinAttackRadius)
         {
+
             animator.SetBool("IdleAngry", true);
-            
             AttackModes();
         }
-       
-       
-}
-   
+      
+
+    }
+
+ 
 
     private void ChasePlayer()
     {
         animator.SetBool("Walk", true);
+        animator.SetBool("IdleAngry", false);
         transform.position += transform.forward * speed *Time.deltaTime ;
         transform.LookAt(player.transform);
     }
@@ -85,41 +88,46 @@ public class ElderGoblinAI : MonoBehaviour
     {
         if (!previouslyAttack)
         {
-            
+
             attackVal = Random.Range(1, 4);
 
             if (attackVal == 1)
             {
-       
-               Attack();
+                StartCoroutine(Attack1());
+                Attack();
+
                
-               StartCoroutine(Attack1());
 
 
             }
             if (attackVal == 2)
             {
 
-                Attack();
-               
+                
+
                 StartCoroutine(Attack2());
+                Attack();
             }
             if (attackVal == 3)
             {
 
-                Attack();
+                
                 StartCoroutine(Attack3());
+                Attack();
             }
             if (attackVal == 4)
             {
 
-                Attack();
-                
+               
+
                 StartCoroutine(Attack4());
+                Attack();
             }
-          
+
         }
     }
+
+
 
     private void OnDrawGizmosSelected()
     {
