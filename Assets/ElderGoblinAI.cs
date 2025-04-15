@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ElderGoblinAI : MonoBehaviour
@@ -37,49 +38,58 @@ public class ElderGoblinAI : MonoBehaviour
 
     [SerializeField] Collider[] hitPlayer;
     [SerializeField] PlayerHealth playerHealth;
-    
 
+    [Header("PotionEffect")]
+    [SerializeField]internal bool isPotionEffectActive;
 
+    public void setPotionEffect(bool isPotionActivated)
+    {
+        isPotionActivated = isPotionEffectActive;
+    }
     private void Start()
     {
         currentHealth = maxHealth;
     }
 
-
+    
 
     private void Update()
     {
+        
        isPlayerinVisionRadius = Physics.CheckSphere(transform.position, visionRadius,playerLayer);
        isPlayerinAttackRadius = Physics.CheckSphere(transform.position, attackRadius, playerLayer);
 
-        if (isPlayerinVisionRadius && !isPlayerinAttackRadius)
+        if (isPlayerinVisionRadius && !isPlayerinAttackRadius && !isPotionEffectActive)
         {
             ChasePlayer();
         }
     
-        if (!isPlayerinVisionRadius && !isPlayerinAttackRadius)
+        if (!isPlayerinVisionRadius && !isPlayerinAttackRadius && !isPotionEffectActive)
         {
 
             animator.SetBool("Walk", false);
 
         }
 
-        if (isPlayerinVisionRadius && isPlayerinAttackRadius)
+        if (isPlayerinVisionRadius && isPlayerinAttackRadius && !isPotionEffectActive)
         {
 
             animator.SetBool("IdleAngry", true);
             AttackModes();
         }
-      
+
+       
+
 
     }
 
- 
+   
 
     private void ChasePlayer()
     {
         animator.SetBool("Walk", true);
         animator.SetBool("IdleAngry", false);
+        
         transform.position += transform.forward * speed *Time.deltaTime ;
         transform.LookAt(player.transform);
     }
@@ -203,7 +213,11 @@ public class ElderGoblinAI : MonoBehaviour
     public void TakeDamage(float amout)
     {
         currentHealth -= amout;
-        animator.SetTrigger("GetHit");
+        if(!isPotionEffectActive)
+        {
+            animator.SetTrigger("GetHit");
+        }
+     
 
         if (currentHealth <= 0) 
         {

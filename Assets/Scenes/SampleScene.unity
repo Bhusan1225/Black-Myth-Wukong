@@ -571,9 +571,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8df90bc3075226c4ab6bbce80688046c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  potionTimer: 3
+  potionTimer: 1
+  potionEffectTimer: 12
   countDown: 0
+  radius: 5.19
   hasUsed: 0
+  potionCount: 2
+  hit: []
+  PotionEffectEnemy: {fileID: 0}
+  potionParticleEffect: {fileID: 2224161650344863180, guid: a6898eb8645546c418c49bd04493a373,
+    type: 3}
 --- !u!54 &1281709113
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -681,8 +688,8 @@ Transform:
   m_GameObject: {fileID: 1281709111}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.34, y: 2, z: -27.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 26.3, y: 2, z: -15.7}
+  m_LocalScale: {x: 0.32118, y: 0.32118, z: 0.32118}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1384,7 +1391,7 @@ Transform:
   m_GameObject: {fileID: 919132148471331875}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 26.5, y: 0.08, z: -14.34}
+  m_LocalPosition: {x: 26.5, y: 0.08, z: -13.5}
   m_LocalScale: {x: 2.3062665, y: 2.3062665, z: 2.3062665}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1812,6 +1819,7 @@ GameObject:
   - component: {fileID: 5866666020446141668}
   - component: {fileID: 5866666020446141669}
   - component: {fileID: 5866666020446141667}
+  - component: {fileID: 5866666020446141670}
   m_Layer: 8
   m_Name: Elder Goblin_opponent
   m_TagString: Untagged
@@ -10904,6 +10912,7 @@ MonoBehaviour:
   RightLeg: {fileID: 5477181765505077160}
   hitPlayer: []
   playerHealth: {fileID: 0}
+  isPotionEffectActive: 0
 --- !u!136 &5866666020446141669
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10927,6 +10936,20 @@ CapsuleCollider:
   m_Height: 2.2
   m_Direction: 1
   m_Center: {x: 0, y: 1.2, z: 0}
+--- !u!114 &5866666020446141670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 919132148471331875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2949b271a7b07bd4f9b61dffbab74832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElderGoblinAI: {fileID: 5866666020446141668}
+  immobilizeEffectTime: 12
 --- !u!4 &5901452233886739322
 Transform:
   m_ObjectHideFlags: 0

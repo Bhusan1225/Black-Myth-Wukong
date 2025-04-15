@@ -8,9 +8,19 @@ public class Potion : MonoBehaviour
 
 
     [SerializeField] float potionTimer;
+    [SerializeField] float potionEffectTimer;
     [SerializeField] float countDown;
 
+    [SerializeField] float radius;
+
     [SerializeField] bool hasUsed;
+
+    [SerializeField] int potionCount = 2;
+
+    [SerializeField] Collider[] hit;
+    [SerializeField] PotionsEffect PotionEffectEnemy;
+    GameObject particleEffect;
+    public GameObject potionParticleEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,17 +30,62 @@ public class Potion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        PotionActivation();
+
+    }
+
+    void PotionActivation()
+    {
         countDown -= Time.deltaTime;
-        if (countDown <= 0 && !hasUsed) 
+        if (countDown <= 0 && !hasUsed)
         {
 
-            useSpell();
+            TriggerPotionEffect();
+            potionCount--;
+            hasUsed = true;
+
+            Invoke(nameof(DestroyPotionEffect), potionEffectTimer);
         }
     }
 
-    private void useSpell()
+    private void DestroyPotionEffect()
+    {
+        
+        Destroy(gameObject);
+    }
+
+    private void TriggerPotionEffect()
     {
         Debug.Log("Spell using......");
+        particleEffect =Instantiate(potionParticleEffect, transform.position, transform.rotation);
+
+        hit = Physics.OverlapSphere(transform.position, radius);
+
+        foreach (Collider enemy in hit)
+        {
+            PotionEffectEnemy = enemy.GetComponent<PotionsEffect>();
+            if (PotionEffectEnemy != null)
+            {
+                Debug.Log("hit by spell.");
+                PotionEffectEnemy.Immobilize();
+                Debug.Log("hit by spell is Over.");
+            }
+            
+        }
+
+        Invoke(nameof(DestroyPotionParticleEffect), potionEffectTimer);
     }
+
+    private void DestroyPotionParticleEffect()
+    {
+        Destroy(particleEffect);
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, radius);
+    }
+
+   
 }
