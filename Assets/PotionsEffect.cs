@@ -36,7 +36,8 @@ public class PotionsEffect : MonoBehaviour
     {
         Debug.Log("Immobilize is activated....");
         animator.SetBool("sitting", true);
-        ElderGoblinAI.isPotionEffectActive = true;
+        //ElderGoblinAI.isPotionEffectActive = true;
+        ElderGoblinAI.setPotionEffect(true);
         //GetComponent<Collider>().enabled = false;
         countdownTimer = immobilizeEffectTime;
         isCountingDown = true;
@@ -46,7 +47,8 @@ public class PotionsEffect : MonoBehaviour
     {
         Debug.Log("Immobilize is deactivated....");
         animator.SetBool("sitting", false);
-        ElderGoblinAI.isPotionEffectActive = false;
+        //ElderGoblinAI.isPotionEffectActive = false;
+        ElderGoblinAI.setPotionEffect(false);
         //GetComponent<Collider>().enabled = true;
         isCountingDown = false;
         countdownTimer = 0f;

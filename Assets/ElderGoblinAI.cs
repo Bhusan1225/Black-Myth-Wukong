@@ -44,7 +44,7 @@ public class ElderGoblinAI : MonoBehaviour
 
     public void setPotionEffect(bool isPotionActivated)
     {
-        isPotionActivated = isPotionEffectActive;
+        isPotionEffectActive = isPotionActivated;
     }
     private void Start()
     {
