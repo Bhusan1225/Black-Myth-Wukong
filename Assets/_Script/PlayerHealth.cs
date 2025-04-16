@@ -38,15 +38,15 @@ public class PlayerHealth : MonoBehaviour
     {
         //Destroy(gameObject);
         GameOverPanel.SetActive(true);
+        animator.SetTrigger("Death");
         StartCoroutine("PauseGame", 4f);
 
     }
 
     IEnumerator PauseGame()
     {
-        animator.SetTrigger("Death");
-        Time.timeScale = 0.2f;
        
+        Time.timeScale = 0.2f;
         yield return null;
 
     }
