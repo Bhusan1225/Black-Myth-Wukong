@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   potionTimer: 2
-  potionEffectTimer: 40
+  potionEffectTimer: 11
   countDown: 0
   radius: 5.19
   hasUsed: 0

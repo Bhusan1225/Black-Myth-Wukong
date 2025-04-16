@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class ElderGoblinAI : MonoBehaviour
 {
-
+    [Header("Opponent Health")]
     [SerializeField] float maxHealth = 200;
     [SerializeField] float currentHealth;
+    [SerializeField] private HealthBar healthBar;
 
     [SerializeField]float speed = 4f;
 
@@ -49,6 +50,7 @@ public class ElderGoblinAI : MonoBehaviour
     private void Start()
     {
         currentHealth = maxHealth;
+        healthBar.UpdateHealthBar(maxHealth, currentHealth);
     }
 
     
@@ -222,6 +224,10 @@ public class ElderGoblinAI : MonoBehaviour
         if (currentHealth <= 0) 
         {
             Die();
+        }
+        else
+        {
+            healthBar.UpdateHealthBar(maxHealth, currentHealth);
         }
     }
 
