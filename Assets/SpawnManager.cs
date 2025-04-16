@@ -51,7 +51,7 @@ public class SpawnManager : MonoBehaviour
     private void potionSpawn()
     {
         isPotionThere = true;
-        Vector3 randomSpawn = new Vector3(Random.Range(spawnZoneMin.x, spawnZoneMax.x), 0, Random.Range(spawnZoneMin.z, spawnZoneMax.z));
+        Vector3 randomSpawn = new Vector3(Random.Range(spawnZoneMin.x, spawnZoneMax.x), 1, Random.Range(spawnZoneMin.z, spawnZoneMax.z));
         ImmobilizePotion = Instantiate(spawnPrefab, randomSpawn, spawnPrefab.transform.rotation);
         countdownTimer = potionSwawnTime;
         isCountingDown = true;

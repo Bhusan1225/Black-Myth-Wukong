@@ -23,7 +23,7 @@ public class PotionTrigger : MonoBehaviour
             GameObject player = other.GetComponent<CharacterMovement>().gameObject;
             player.GetComponent<PotionCollector>().Collection();
             spawnManager.DestroySpawnnedPotion();
-
+            Destroy(gameObject);
         }
 
     }
