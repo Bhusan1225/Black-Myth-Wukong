@@ -8,18 +8,11 @@ public class PotionCollector : MonoBehaviour
 {
     [SerializeField] internal int potionCounting;
     [SerializeField] internal TextMeshProUGUI PotionCountText;
-  
 
     // Start is called before the first frame update
     void Start()
     {
         potionCounting = 5;
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
     }
 

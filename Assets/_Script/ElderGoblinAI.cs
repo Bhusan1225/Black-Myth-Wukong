@@ -11,16 +11,14 @@ public class ElderGoblinAI : MonoBehaviour
     [SerializeField] float currentHealth;
     [SerializeField] private HealthBar healthBar;
 
-    [SerializeField]float speed = 4f;
-
-    [SerializeField] Animator animator;
-
     [Header("Player detect")]
     [SerializeField] GameObject player;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] float visionRadius;
     [SerializeField] bool isPlayerinVisionRadius;
     [SerializeField] float attackRadius;
+    [SerializeField] float speed = 4f;
+    [SerializeField] Animator animator;
 
     [Header("Attack on Player")]
     public int attackVal;
@@ -35,8 +33,6 @@ public class ElderGoblinAI : MonoBehaviour
     [SerializeField] Transform RightHand;
     [SerializeField] Transform LeftLeg;
     [SerializeField] Transform RightLeg;
-
-
     [SerializeField] Collider[] hitPlayer;
     [SerializeField] PlayerHealth playerHealth;
 
@@ -52,8 +48,6 @@ public class ElderGoblinAI : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.UpdateHealthBar(maxHealth, currentHealth);
     }
-
-    
 
     private void Update()
     {
@@ -160,7 +154,7 @@ public class ElderGoblinAI : MonoBehaviour
             if (targetHealth != null)
             {
                 Debug.Log("Player hit by Elder Goblin");
-                targetHealth.TakeDamage(0.05f);
+                targetHealth.TakeDamage(0.08f);
             }
         }
 
