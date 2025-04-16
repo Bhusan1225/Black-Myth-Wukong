@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+  
 
     [SerializeField] GameObject spawnPrefab;
 
@@ -23,12 +24,11 @@ public class SpawnManager : MonoBehaviour
     {
         
     }
+ 
 
     // Update is called once per frame
     void Update()
     {
-
-
 
         if (!isPotionThere)
         {
@@ -57,7 +57,7 @@ public class SpawnManager : MonoBehaviour
         isCountingDown = true;
     }
 
-    private void DestroySpawnnedPotion()
+    public void DestroySpawnnedPotion()
     {
         Destroy(ImmobilizePotion);
         isPotionThere = false;
