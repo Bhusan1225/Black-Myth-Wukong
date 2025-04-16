@@ -15,7 +15,7 @@ public class Potion : MonoBehaviour
 
     [SerializeField] bool hasUsed;
 
-    [SerializeField] int potionCount = 2;
+    [SerializeField] int potionCount = 4;
 
     [SerializeField] Collider[] hit;
     [SerializeField] PotionsEffect PotionEffectEnemy;
@@ -56,9 +56,9 @@ public class Potion : MonoBehaviour
 
     private void TriggerPotionEffect()
     {
-        Debug.Log("Spell using......");
-        particleEffect =Instantiate(potionParticleEffect, transform.position, transform.rotation);
-
+        
+        //particleEffect =Instantiate(potionParticleEffect, transform.position, transform.rotation);
+        particleEffect = Instantiate(potionParticleEffect, (transform.position ), Quaternion.identity);
         hit = Physics.OverlapSphere(transform.position, radius);
 
         foreach (Collider enemy in hit)
@@ -66,9 +66,9 @@ public class Potion : MonoBehaviour
             PotionEffectEnemy = enemy.GetComponent<PotionsEffect>();
             if (PotionEffectEnemy != null)
             {
-                Debug.Log("hit by spell.");
+                
                 PotionEffectEnemy.Immobilize();
-                Debug.Log("hit by spell is Over.");
+                
             }
             
         }

@@ -6,14 +6,14 @@ using UnityEngine.UI;
 
 public class PotionCollector : MonoBehaviour
 {
-    [SerializeField] int potionCount;
-    [SerializeField] TextMeshProUGUI PotionCountText;
+    [SerializeField] internal int potionCounting;
+    [SerializeField] internal TextMeshProUGUI PotionCountText;
   
 
     // Start is called before the first frame update
     void Start()
     {
-        potionCount = 0;
+        potionCounting = 40;
         
     }
 
@@ -25,7 +25,7 @@ public class PotionCollector : MonoBehaviour
 
    public void Collection()
     {
-        potionCount++;
-        PotionCountText.text = "Potion: " + potionCount.ToString();
+        potionCounting++;
+        PotionCountText.text = "Potion: " + potionCounting.ToString();
     }
 }

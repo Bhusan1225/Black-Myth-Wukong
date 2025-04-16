@@ -115,7 +115,7 @@ public class CloseCombatHandler : MonoBehaviour
             }
             if (closeCombatVal == 5)
             {
-                Debug.Log("Attack jump attack 5");
+               
                 attackArea = RightHand;
                 attackingRadius = 0.5f;
                 Attack();
