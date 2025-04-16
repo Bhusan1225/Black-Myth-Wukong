@@ -234,7 +234,8 @@ public class ElderGoblinAI : MonoBehaviour
     private void Die()
     {
        
-       animator.SetBool("isDead", true);
+        animator.SetBool("isDead", true);
+        animator.SetBool("Walk", false);
         this.enabled = false;
         GetComponent<Collider>().enabled = false;
       
