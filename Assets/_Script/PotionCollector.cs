@@ -13,7 +13,7 @@ public class PotionCollector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        potionCounting = 40;
+        potionCounting = 5;
         
     }
 
